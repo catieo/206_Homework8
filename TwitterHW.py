@@ -90,11 +90,17 @@ conn.commit()
     # take in the view while running from place to place @umichDLHS  @umich…
 # Include the blank line between each tweet.
 
+sqlstr = "SELECT time_posted, tweet_text FROM Tweets ORDER BY time_posted"
+for row in cur.execute(sqlstr):
+    print(row[0],'-',row[1],'\n')
+
 
 # Select the author of all of the tweets (the full rows/tuples of information) that have been retweeted MORE
 # than 2 times, and fetch them into the variable more_than_2_rts.
 # Print the results
-
+cur.execute("SELECT author FROM Tweets WHERE retweets > 2")
+more_than_2_rts = cur.fetchall()
+print(more_than_2_rts)
 
 
 if __name__ == "__main__":
